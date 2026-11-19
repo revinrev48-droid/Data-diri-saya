@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Pribadi - Revin Wibissalam</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#0f172a',
+                        accent: '#3b82f6'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold shadow-md">
+                        RW
+                    </div>
+                    <span class="font-bold text-lg tracking-tight text-slate-900">Portofolio<span class="text-blue-600">.id</span></span>
+                </div>
+                
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <!-- Tombol Menu Lihat Identitas (Dilindungi Token) -->
+                    <button onclick="requestAuth('view_identity')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 transition shadow-sm active:scale-95">
+                        <i class="fa-solid fa-lock text-amber-400"></i>
+                        <span>Menu Identitas</span>
+                    </button>
+                    <!-- Tombol Menu Isi/Edit Data Identitas (Dilindungi Token) -->
+                    <button onclick="requestAuth('edit_identity')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition shadow-sm active:scale-95">
+                        <i class="fa-solid fa-user-pen"></i>
+                        <span class="hidden sm:inline">Isi Data Identitas</span>
+                        <span class="sm:hidden">Edit Identitas</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero / Profil Utama Section -->
+    <header class="relative overflow-hidden bg-gradient-to-b from-blue-50/70 via-white to-slate-50 pt-10 pb-14 border-b border-slate-200/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col md:flex-row items-center gap-8">
+                
+                <!-- Foto Profil -->
+                <div class="relative group shrink-0">
+                    <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-3xl overflow-hidden ring-4 ring-blue-100 shadow-lg bg-slate-100">
+                        <img id="profile-photo-display" 
+                             src="https://placehold.co/400x400/2563eb/ffffff?text=Foto+Profil" 
+                             onerror="this.src='https://placehold.co/400x400/2563eb/ffffff?text=Profil'" 
+                             alt="Foto Profil" 
+                             class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                    </div>
+                    <!-- Tombol Ganti Foto Cepat (Juga pakai Token) -->
+                    <button onclick="requestAuth('edit_identity')" title="Ubah Foto & Identitas" class="absolute -bottom-2 -right-2 w-10 h-10 rounded-2xl bg-blue-600 text-white shadow-lg flex items-center justify-center hover:bg-blue-700 transition border-2 border-white">
+                        <i class="fa-solid fa-camera text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Informasi Ringkas & Kontak -->
+                <div class="flex-1 text-center md:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3">
+                        <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+                        Profil & Rekam Jejak Pribadi
+                    </div>
+                    <h1 id="hero-name" class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">
+                        Revin Wibissalam
+                    </h1>
+                    <p id="hero-bio" class="text-slate-600 text-sm sm:text-base max-w-2xl mb-6 leading-relaxed">
+                        Selamat datang di halaman portofolio digital saya. Di sini tersimpan informasi lengkap mengenai perjalanan pendidikan, keahlian, prestasi, pengalaman organisasi, serta karya yang telah saya buat.
+                    </p>
+
+                    <!-- Kontak & Media Sosial -->
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-3">
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/628995356598" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white border border-emerald-200 transition font-medium text-sm shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>08995356598</span>
+                        </a>
+
+                        <!-- Instagram -->
+                        <a href="https://instagram.com/revin_wibissalam" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-pink-50 text-pink-700 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:text-white border border-pink-200 transition font-medium text-sm shadow-sm">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                            <span>@revin_wibissalam</span>
+                        </a>
+
+                        <!-- TikTok -->
+                        <a href="https://www.tiktok.com/@Revinbkc" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-slate-100 text-slate-800 hover:bg-slate-900 hover:text-white border border-slate-200 transition font-medium text-sm shadow-sm">
+                            <i class="fa-brands fa-tiktok text-base"></i>
+                            <span>@Revinbkc</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content: 6 Kategori Data Portofolio -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+            <!-- 1. KARTU PRESTASI -->
+            <section class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-lg font-bold text-slate-900">Prestasi</h2>
+                                <p class="text-xs text-slate-500">Penghargaan & pencapaian</p>
+                            </div>
+                        </div>
+                        <button onclick="requestAuth('edit_section', 'prestasi')" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-amber-50 text-amber-700 hover:bg-amber-600 hover:text-white border border-amber-200 transition">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>Update Data</span>
+                        </button>
+                    </div>
+                    <div id="list-prestasi" class="space-y-3">
+                        <!-- Diisi oleh JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. KARTU KEAHLIAN -->
+            <section class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-lg font-bold text-slate-900">Keahlian</h2>
+                                <p class="text-xs text-slate-500">Kompetensi & keterampilan</p>
+                            </div>
+                        </div>
+                        <button onclick="requestAuth('edit_section', 'keahlian')" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-blue-50 text-blue-700 hover:bg-blue-600 hover:text-white border border-blue-200 transition">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>Update Data</span>
+                        </button>
+                    </div>
+                    <div id="list-keahlian" class="flex flex-wrap gap-2">
+                        <!-- Diisi oleh JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. KARTU RIWAYAT PENDIDIKAN -->
+            <section class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-lg font-bold text-slate-900">Riwayat Pendidikan</h2>
+                                <p class="text-xs text-slate-500">Jenjang akademik & sekolah</p>
+                            </div>
+                        </div>
+                        <button onclick="requestAuth('edit_section', 'pendidikan')" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-50 text-indigo-700 hover:bg-indigo-600 hover:text-white border border-indigo-200 transition">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>Update Data</span>
+                        </button>
+                    </div>
+                    <div id="list-pendidikan" class="space-y-3">
+                        <!-- Diisi oleh JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. KARTU PENGALAMAN ORGANISASI -->
+            <section class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-lg font-bold text-slate-900">Pengalaman Organisasi</h2>
+                                <p class="text-xs text-slate-500">Kepemimpinan & kepanitiaan</p>
+                            </div>
+                        </div>
+                        <button onclick="requestAuth('edit_section', 'organisasi')" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white border border-emerald-200 transition">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>Update Data</span>
+                        </button>
+                    </div>
+                    <div id="list-organisasi" class="space-y-3">
+                        <!-- Diisi oleh JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. KARTU KARYA ATAU PRODUK -->
+            <section class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-lg font-bold text-slate-900">Karya atau Produk</h2>
+                                <p class="text-xs text-slate-500">Portofolio proyek & hasil karya</p>
+                            </div>
+                        </div>
+                        <button onclick="requestAuth('edit_section', 'karya')" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-purple-50 text-purple-700 hover:bg-purple-600 hover:text-white border border-purple-200 transition">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>Update Data</span>
+                        </button>
+                    </div>
+                    <div id="list-karya" class="space-y-3">
+                        <!-- Diisi oleh JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. KARTU RIWAYAT PENYAKIT -->
+            <section class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-notes-medical"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-lg font-bold text-slate-900">Riwayat Penyakit</h2>
+                                <p class="text-xs text-slate-500">Catatan kesehatan & medis</p>
+                            </div>
+                        </div>
+                        <button onclick="requestAuth('edit_section', 'penyakit')" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-rose-50 text-rose-700 hover:bg-rose-600 hover:text-white border border-rose-200 transition">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>Update Data</span>
+                        </button>
+                    </div>
+                    <div id="list-penyakit" class="space-y-3">
+                        <!-- Diisi oleh JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-8 mt-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+            <p>&copy; 2026 <span class="font-semibold text-slate-800">Revin Wibissalam</span>. Hak Cipta Dilindungi.</p>
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/628995356598" target="_blank" class="hover:text-emerald-600 transition"><i class="fa-brands fa-whatsapp"></i> 08995356598</a>
+                <a href="https://instagram.com/revin_wibissalam" target="_blank" class="hover:text-pink-600 transition"><i class="fa-brands fa-instagram"></i> revin_wibissalam</a>
+                <a href="https://www.tiktok.com/@Revinbkc" target="_blank" class="hover:text-slate-900 transition"><i class="fa-brands fa-tiktok"></i> Revinbkc</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL 1: VERIFIKASI TOKEN / PASSWORD (191111)                         -->
+    <!-- ===================================================================== -->
+    <div id="modal-auth" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 transform transition-all">
+            <div class="flex justify-between items-start mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <button onclick="closeModal('modal-auth')" class="text-slate-400 hover:text-slate-700 p-2 rounded-xl hover:bg-slate-100 transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Verifikasi Keamanan</h3>
+            <p id="auth-subtitle" class="text-sm text-slate-500 mb-5">Masukkan token atau password untuk mengakses menu ini.</p>
+            
+            <form id="form-auth" onsubmit="verifyToken(event)" class="space-y-4">
+                <div>
+                    <label for="token-input" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Token / Password</label>
+                    <input type="password" id="token-input" inputmode="numeric" placeholder="Masukkan token akses..." required
+                           class="w-full px-4 py-3 rounded-2xl border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none text-center text-lg tracking-widest font-bold">
+                    <p id="auth-error" class="hidden text-xs text-rose-600 font-medium
